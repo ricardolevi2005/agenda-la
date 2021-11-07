@@ -2,13 +2,16 @@ require('dotenv').config()
 
 const { Client } = require('@notionhq/client')
 
+const notionSecret = process.env.NOTION_SECRET
+const databaseId = process.env.NOTION_DATABASE_ID
+
 const read = async () => {
   const notion = new Client({
-    auth: process.env.NOTION_SECRET,
+    auth: notionSecret,
   })
 
   const data = await notion.databases.query({
-    database_id: '07be9a4620b041669bf511b1e39d4e04',
+    database_id: databaseId,
     page_size: 100,
     filter: {
       and: [
